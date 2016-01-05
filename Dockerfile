@@ -21,7 +21,7 @@ RUN gpg --keyserver pgp.mit.edu --recv-keys B42F6819007F00F88E364FD4036A9C25BF35
 
 # get syncthing
 WORKDIR /srv
-RUN useradd --no-create-home -g users --uid $SYNCTHING_UID $SYNCTHING_USER
+RUN useradd --no-create-home -g users --uid $UID $SYNCTHING_USER
 RUN curl -L -o syncthing.tar.gz https://github.com/syncthing/syncthing/releases/download/v$SYNCTHING_VERSION/syncthing-linux-amd64-v$SYNCTHING_VERSION.tar.gz \
   && tar -xzvf syncthing.tar.gz \
   && rm -f syncthing.tar.gz \
