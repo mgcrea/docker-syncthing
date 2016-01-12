@@ -9,6 +9,8 @@ if [ ! -f /srv/config/config.xml ]; then
   /srv/syncthing/syncthing --generate="/srv/config"
   # don't take the whole volume with the default so that we can add additional folders
   sed -e "s/id=\"default\" path=\"\/root\/Sync\/\"/id=\"default\" path=\"\/srv\/data\/default\/\"/" -i /srv/config/config.xml
+  # ensure we can see the web ui outside of the docker container
+	sed -e "s/<address>0.0.0.0:8384/<address>0.0.0.0:8384/" -i /srv/config/config.xml
 fi
 
 usermod -u $UID $SYNCTHING_USER
