@@ -1,5 +1,5 @@
 FROM ubuntu:14.04
-MAINTAINER Joey Baker <joey@byjoeybaker.com>
+MAINTAINER Olivier Louvignes <olivier@mg-crea.com>
 
 RUN apt-get update \
   && apt-get upgrade -y --no-install-recommends \
