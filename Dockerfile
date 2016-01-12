@@ -33,8 +33,8 @@ RUN curl -L -o syncthing.tar.gz https://github.com/syncthing/syncthing/releases/
 
 VOLUME ["/srv/data", "/srv/config"]
 
-ADD ./files/start.sh /srv/start.sh
-RUN chmod 770 /srv/start.sh
+ADD ./files/entrypoint.sh /sbin/entrypoint.sh
+RUN chmod 770 /sbin/entrypoint.sh
 
-ENTRYPOINT ["/srv/start.sh"]
+ENTRYPOINT ["/sbin/entrypoint.sh"]
 
