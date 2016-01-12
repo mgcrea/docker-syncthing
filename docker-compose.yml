@@ -3,11 +3,11 @@
 syncthing:
   container_name: syncthing
   hostname: syncthing
-  image: joeybaker/syncthing
+  image: mgcrea/syncthing
   ports:
     - "22000:22000"
-    - "8080:8080"
     - "21025:21025/udp"
+    - "127.0.0.1:8384:8384"
   volumes:
     - /srv/docker/syncthing/data:/srv/data
     - /srv/docker/syncthing/config:/srv/config
