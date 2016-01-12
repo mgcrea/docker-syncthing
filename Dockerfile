@@ -7,7 +7,7 @@ RUN apt-get update \
   && apt-get autoremove -y \
   && apt-get clean
 
-ENV SYNCTHING_VERSION 0.12.11
+ENV SYNCTHING_VERSION 0.12.12
 ENV SYNCTHING_USER syncthing
 ENV UID 1027
 
