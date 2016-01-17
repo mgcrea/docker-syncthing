@@ -9,8 +9,10 @@ RUN apt-get update \
 
 ENV SYNCTHING_VERSION 0.12.14
 ENV SYNCTHING_USER syncthing
+ENV SYNCTHING_GROUP users
 ENV SYNCTHING_PORT 8384
 ENV UID 1027
+ENV GID 100
 
 # grab gosu for easy step-down from root
 RUN gpg --keyserver pgp.mit.edu --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \
@@ -22,7 +24,7 @@ RUN gpg --keyserver pgp.mit.edu --recv-keys B42F6819007F00F88E364FD4036A9C25BF35
 
 # get syncthing
 WORKDIR /srv
-RUN useradd --no-create-home -g users --uid $UID $SYNCTHING_USER
+RUN useradd --no-create-home -g $SYNCTHING_GROUP --uid $UID $SYNCTHING_USER
 RUN curl -L -o syncthing.tar.gz https://github.com/syncthing/syncthing/releases/download/v$SYNCTHING_VERSION/syncthing-linux-amd64-v$SYNCTHING_VERSION.tar.gz \
   && tar -xzvf syncthing.tar.gz \
   && rm -f syncthing.tar.gz \
