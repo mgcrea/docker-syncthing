@@ -7,7 +7,7 @@ RUN apt-get update \
   && apt-get autoremove -y \
   && apt-get clean
 
-ENV SYNCTHING_VERSION 0.12.14
+ENV SYNCTHING_VERSION 0.12.15
 ENV SYNCTHING_USER syncthing
 ENV SYNCTHING_GROUP users
 ENV SYNCTHING_PORT 8384

@@ -10,4 +10,4 @@ rebuild: base
 	@docker build --tag=mgcrea/syncthing:latest .
 
 release: rebuild
-	@docker build --tag=mgcrea/syncthing:0.12.14 .
+	@docker build --tag=mgcrea/syncthing:0.12.15 .
