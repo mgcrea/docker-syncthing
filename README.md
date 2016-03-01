@@ -34,7 +34,7 @@ You can easily override the user/group used by the image using environment varia
 syncthing:
   container_name: syncthing
   hostname: syncthing
-  image: mgcrea/syncthing:0.12.14
+  image: mgcrea/syncthing:0.12.19
   environment:
     - SYNCTHING_USER=www-data
     - SYNCTHING_GROUP=www-data

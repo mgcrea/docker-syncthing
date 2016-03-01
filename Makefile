@@ -1,4 +1,4 @@
-SYNCTHING_VERSION := 0.12.15
+SYNCTHING_VERSION := 0.12.19
 
 all: build
 
