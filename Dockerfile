@@ -1,5 +1,5 @@
-FROM ubuntu:14.04
-MAINTAINER Olivier Louvignes <olivier@mg-crea.com>
+FROM ubuntu:16.04
+MAINTAINER Olivier Louvignes <olivier@mgcrea.io>
 
 RUN apt-get update \
   && apt-get upgrade -y --no-install-recommends \
@@ -7,8 +7,8 @@ RUN apt-get update \
   && apt-get autoremove -y \
   && apt-get clean
 
-ARG SYNCTHING_VERSION
-ENV SYNCTHING_VERSION ${SYNCTHING_VERSION:-1.0.0}
+ARG IMAGE_VERSION
+ENV IMAGE_VERSION ${IMAGE_VERSION:-1.0.0}
 ENV SYNCTHING_USER syncthing
 ENV SYNCTHING_GROUP users
 ENV SYNCTHING_PORT 8384
@@ -17,16 +17,16 @@ ENV GID 100
 
 # grab gosu for easy step-down from root
 RUN gpg --keyserver pgp.mit.edu --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \
-  && curl -o /usr/local/bin/gosu -SL "https://github.com/tianon/gosu/releases/download/1.7/gosu-$(dpkg --print-architecture)" \
-  && curl -o /usr/local/bin/gosu.asc -L "https://github.com/tianon/gosu/releases/download/1.7/gosu-$(dpkg --print-architecture).asc" \
+  && curl -o /usr/local/bin/gosu -SL "https://github.com/tianon/gosu/releases/download/1.9/gosu-$(dpkg --print-architecture)" \
+  && curl -o /usr/local/bin/gosu.asc -L "https://github.com/tianon/gosu/releases/download/1.9/gosu-$(dpkg --print-architecture).asc" \
   && gpg --verify /usr/local/bin/gosu.asc \
   && rm /usr/local/bin/gosu.asc \
   && chmod +x /usr/local/bin/gosu
 
 # get syncthing
 WORKDIR /srv
-RUN useradd --no-create-home -g $SYNCTHING_GROUP --uid $UID $SYNCTHING_USER
-RUN curl -L -o syncthing.tar.gz https://github.com/syncthing/syncthing/releases/download/v$SYNCTHING_VERSION/syncthing-linux-amd64-v$SYNCTHING_VERSION.tar.gz \
+RUN useradd --no-create-home -g ${SYNCTHING_GROUP} --uid ${UID} ${SYNCTHING_USER}
+RUN curl -L -o syncthing.tar.gz https://github.com/syncthing/syncthing/releases/download/v${IMAGE_VERSION}/syncthing-linux-amd64-v${IMAGE_VERSION}.tar.gz \
   && tar -xzvf syncthing.tar.gz \
   && rm -f syncthing.tar.gz \
   && mv syncthing-linux-amd64-v* syncthing \

@@ -1,15 +1,21 @@
-SYNCTHING_VERSION := 0.12.19
+DOCKER_IMAGE := mgcrea/syncthing
+IMAGE_VERSION := 0.13.4
+BASE_IMAGE := ubuntu:16.04
 
 all: build
 
 build:
-	@docker build --build-arg SYNCTHING_VERSION=${SYNCTHING_VERSION} --tag=mgcrea/syncthing:latest .
+	@docker build --build-arg IMAGE_VERSION=${IMAGE_VERSION} --tag=${DOCKER_IMAGE}:latest .
 
 base:
-	@docker pull ubuntu:14.04
+	@docker pull ${BASE_IMAGE}
 
 rebuild: base
-	@docker build --build-arg SYNCTHING_VERSION=${SYNCTHING_VERSION} --tag=mgcrea/syncthing:latest .
+	@docker build --build-arg IMAGE_VERSION=${IMAGE_VERSION} --tag=${DOCKER_IMAGE}:latest .
 
 release: rebuild
-	@docker build --build-arg SYNCTHING_VERSION=${SYNCTHING_VERSION} --tag=mgcrea/syncthing:${SYNCTHING_VERSION} .
+	@docker build --build-arg IMAGE_VERSION=${IMAGE_VERSION} --tag=${DOCKER_IMAGE}:${IMAGE_VERSION} .
+	@scripts/tag.sh ${DOCKER_IMAGE} ${IMAGE_VERSION}
+
+push:
+	@scripts/push.sh ${DOCKER_IMAGE} ${IMAGE_VERSION}
