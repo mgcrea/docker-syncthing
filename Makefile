@@ -1,5 +1,5 @@
 DOCKER_IMAGE := mgcrea/syncthing
-IMAGE_VERSION := 0.14.6
+IMAGE_VERSION := 0.14.23
 BASE_IMAGE := ubuntu:16.04
 
 all: build

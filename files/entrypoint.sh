@@ -21,7 +21,7 @@ usermod -g $GID $SYNCTHING_USER
 # set permissions so that we have access to volumes
 echo "Setting up permissions..."
 chown -R $SYNCTHING_USER:$SYNCTHING_GROUP /srv/config /srv/data /srv/syncthing
-chmod -R 770 /srv/config /srv/data
+chmod 770 /srv/config /srv/data
 
 echo "Starting syncthing..."
 gosu $SYNCTHING_USER /srv/syncthing/syncthing -home=/srv/config
