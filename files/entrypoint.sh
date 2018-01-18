@@ -24,4 +24,5 @@ chown -R $SYNCTHING_USER:$SYNCTHING_GROUP /srv/config /srv/data /srv/syncthing
 chmod 770 /srv/config /srv/data
 
 echo "Starting syncthing..."
-gosu $SYNCTHING_USER /srv/syncthing/syncthing -home=/srv/config
+gosu $SYNCTHING_USER syncthing -home=/srv/config
+
